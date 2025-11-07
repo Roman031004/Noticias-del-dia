@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto | Noticias al Día</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-content">
+    <h1 class="logo">Contacto</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container form-container">
+
+  <h2>Escríbenos</h2>
+
+  <form id="contactForm">
+    <label>Nombre:
+      <input type="text" id="nombre" required minlength="2">
+    </label>
+    <label>Correo:
+      <input type="email" id="correo" required>
+    </label>
+    <label>Edad:
+      <input type="number" id="edad" min="1" max="120" required>
+    </label>
+
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+
+  <p id="formMsg" class="msg"></p>
+
+</main>
+
+<footer class="footer">
+  <p>© 2025 Noticias al Día</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
