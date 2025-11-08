@@ -26,10 +26,8 @@ function clean(s = "") {
 }
 
 function pickImage(item) {
-  // WordPress: enclosure url
   const encl = item.enclosure?.url || item.enclosure?.["@_url"];
   if (encl) return encl;
-  // media:content / media:thumbnail
   const media = item["media:content"]?.url || item["media:thumbnail"]?.url;
   if (media) return media;
   return "";
@@ -59,7 +57,6 @@ async function fetchFeed(src, maxItems = 12) {
     const data = parser.parse(xml);
     const channel = data.rss?.channel || data.channel || data;
     const items = Array.isArray(channel.item) ? channel.item : (channel.item ? [channel.item] : []);
-
     const mapped = items.slice(0, maxItems).map((it) => ({
       source: src.name,
       region: src.region,
@@ -71,19 +68,16 @@ async function fetchFeed(src, maxItems = 12) {
       date: toEpoch(it.pubDate || it.updated)
     }));
     return mapped;
-  } catch (e) {
-    // fall back vacío en caso de error
+  } catch {
     return [];
   }
 }
 
-export default async function handler(req, res) {
+export default async (req, res) => {
   try {
-    // Trae todos en paralelo con timeout interno
     const results = await Promise.all(SOURCES.map((s) => fetchFeed(s)));
     let all = results.flat();
 
-    // Enriquecer Zenú: si no hay imagen, intentar scrappear og:image (con timeout y sin bloquear todo)
     const zenuTargets = all.filter((x) => x.source === "Zenú Radio" && !x.img).slice(0, 8);
     await Promise.all(zenuTargets.map(async (x) => {
       try {
@@ -93,16 +87,13 @@ export default async function handler(req, res) {
       } catch {}
     }));
 
-    // Fallback visual
     all = all.map((x) => ({
       ...x,
       img: x.img || "https://via.placeholder.com/640x360?text=Noticia"
     }));
 
-    // Orden: Córdoba primero (weight), luego fecha desc
     all.sort((a, b) => (b.weight - a.weight) || (b.date - a.date));
 
-    // Limita la respuesta total para hacerla ágil
     const featured = all[0] || null;
     const grid = all.slice(1, 25);
     const cordoba = all.filter((x) => /córdoba/i.test(x.region)).slice(0, 10);
@@ -110,8 +101,8 @@ export default async function handler(req, res) {
 
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Cache-Control", "s-maxage=120, stale-while-revalidate=300");
-    return res.status(200).json({ featured, grid, cordoba, caribe });
+    res.status(200).json({ featured, grid, cordoba, caribe });
   } catch (e) {
-    return res.status(500).json({ error: String(e) });
+    res.status(500).json({ error: String(e) });
   }
-}
+};
