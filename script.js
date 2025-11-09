@@ -1,8 +1,7 @@
-// script.js — fetch y render básico para /api/news
 const API = "/api/news";
-const grid = document.getElementById("newsGrid");        // contenedor donde meter cards
-const loadMoreBtn = document.getElementById("loadMoreBtn"); // opcional
-const errorBox = document.getElementById("newsError");   // elemento para errores
+const grid = document.getElementById("newsGrid");        
+const loadMoreBtn = document.getElementById("loadMoreBtn"); 
+const errorBox = document.getElementById("newsError");   
 
 async function fetchBBC() {
   try {
@@ -31,7 +30,7 @@ async function fetchBBC() {
 
 function renderArticles(articles) {
   if (!grid) return;
-  grid.innerHTML = ""; // limpia
+  grid.innerHTML = ""; 
 
   if (!articles.length) {
     grid.innerHTML = `<p>No hay noticias disponibles.</p>`;
@@ -47,7 +46,7 @@ function renderArticles(articles) {
     const img = document.createElement("img");
     img.className = "news-img";
     img.alt = a.title || "Imagen noticia";
-    img.src = a.urlToImage || "/placeholder.png"; // opcional placeholder
+    img.src = a.urlToImage || "/placeholder.png"; 
 
     const h3 = document.createElement("h3");
     h3.className = "news-title";
@@ -74,12 +73,10 @@ function renderArticles(articles) {
   grid.appendChild(fragment);
 }
 
-/* utilidades UI */
 function showLoading(on) {
   const loader = document.getElementById("newsLoader");
   if (!loader) return;
   loader.style.display = on ? "block" : "none";
 }
 
-/* arrancar */
 document.addEventListener("DOMContentLoaded", fetchBBC);

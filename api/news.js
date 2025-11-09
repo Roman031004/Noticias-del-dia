@@ -1,6 +1,5 @@
-// api/news.js
 export default async function handler(req, res) {
-  const API_KEY = process.env.NEWSAPI_KEY; // asegúrate de definir esto en Vercel
+  const API_KEY = process.env.NEWSAPI_KEY; 
   const BBC_URL = `https://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=100&apiKey=${API_KEY}`;
 
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -18,7 +17,6 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "NEWSAPI_ERROR", message: data.message || "Error obteniendo noticias de BBC" });
     }
 
-    // Filtramos artículos que no tengan imagen o título
     const filtered = (data.articles || []).filter(a => a.urlToImage && a.title);
 
     return res.status(200).json({ ok: true, articles: filtered });
