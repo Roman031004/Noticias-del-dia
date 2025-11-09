@@ -1,7 +1,7 @@
 // api/news.js
 import fetch from "node-fetch";
 
-const DEFAULT_PAGE_SIZE = 50; // cuántas noticias por página (max 100 en NewsAPI)
+const DEFAULT_PAGE_SIZE = 100; // cuántas noticias por página (max 100 en NewsAPI)
 const COUNTRY = "co";
 
 function mapArticle(a){
