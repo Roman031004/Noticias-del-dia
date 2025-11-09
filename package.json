@@ -1,12 +1,5 @@
 {
-  "name": "noticias-del-dia",
+  "name": "vercel-test-api",
   "version": "1.0.0",
-  "type": "module",
-  "engines": {
-    "node": "22.x"
-  },
-  "dependencies": {
-    "node-fetch": "^3.3.2",
-    "fast-xml-parser": "^4.5.0"
-  }
+  "type": "module"
 }
