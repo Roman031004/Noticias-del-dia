@@ -1,9 +1,8 @@
 {
-  "name": "news-backend",
-  "version": "1.0.0",
   "type": "module",
+  "engines": { "node": "18.x" },
   "dependencies": {
-    "fast-xml-parser": "^4.5.0",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "fast-xml-parser": "^4.5.0"
   }
 }
