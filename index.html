@@ -1,114 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noticias al Día</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-
-<header class="header">
-  <div class="container header-content">
-    <h1 class="logo">Noticias al Día</h1>
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#api">Actualidad</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-
-<section id="inicio" class="hero">
-  <div class="container">
-    <h2>Titulares que importan</h2>
-    <p>Lo más relevante de Colombia, actualizado al instante.</p>
-    <button id="btnApi" class="btn">Cargar Noticias</button>
-  </div>
-</section>
-
-<section id="api" class="<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Noticias al Día</title>
-  <meta name="description" content="Agregador de noticias con foco en Córdoba (Colombia).">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Noticias Globales — Noticias al Día</title>
+  <meta name="description" content="Agregador global de noticias — carga rápida, paginación e infinite scroll." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <a href="index.html" class="brand-name">Noticias al Día</a>
+  <header class="header">
+    <div class="container header-inner">
+      <h1 class="logo">Noticias al Día</h1>
+      <div class="controls">
+        <input id="searchInput" placeholder="Buscar por palabra clave (ej: tecnología, economía)" />
+        <label class="toggle">
+          <input id="infiniteToggle" type="checkbox" />
+          <span>Scroll infinito</span>
+        </label>
       </div>
-      <nav class="nav">
-        <a href="#colombia">Colombia</a>
-        <a href="#cordoba" class="emph">Córdoba</a>
-        <a href="#caribe">Caribe</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
     </div>
   </header>
 
-  <main>
-    <!-- Bloque destacado estilo portada -->
-    <section id="portada" class="portada container">
-      <article id="featured" class="featured skeleton">
-        <div class="featured-media"></div>
-        <div class="featured-body">
-          <h1 class="featured-title">Cargando titulares…</h1>
-          <p class="featured-desc">Un momento, estamos armando la portada.</p>
-          <a class="featured-link" href="#" target="_blank" rel="noopener">Leer más</a>
-          <div class="featured-meta" id="featuredMeta"></div>
-        </div>
-      </article>
+  <main class="container main">
+    <section class="hero">
+      <h2>Titulares globales — actualizados</h2>
+      <p>Infinitas noticias, consulta por palabra clave y carga más cuando quieras.</p>
     </section>
 
-    <!-- Grid principal tipo periódico -->
-    <section id="colombia" class="container section">
-      <h2 class="section-title">Colombia</h2>
+    <section id="newsSection" class="news-section">
       <div id="newsGrid" class="news-grid"></div>
+      <div class="actions">
+        <button id="loadMoreBtn" class="btn" style="display:none">Cargar más</button>
+        <div id="loading" class="loading" aria-hidden="true">Cargando...</div>
+      </div>
     </section>
-
-    <!-- Barra lateral con foco Córdoba -->
-    <aside id="cordoba" class="container section aside">
-      <div class="aside-col">
-        <h3 class="section-title">Córdoba y alrededores</h3>
-        <div id="cordobaList" class="list"></div>
-      </div>
-      <div id="caribe" class="aside-col">
-        <h3 class="section-title">Caribe</h3>
-        <div id="caribeList" class="list"></div>
-      </div>
-    </aside>
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
-      <p>© 2025 Noticias al Día · Agregador académico.</p>
-      <p class="sources">Fuentes: El Meridiano, El Tiempo, El Espectador, El Colombiano, (y otras según disponibilidad RSS).</p>
+    <div class="container">
+      <small>© 2025 Noticias al Día · Agregador global (NewsAPI)</small>
     </div>
   </footer>
 
   <script src="script.js"></script>
-</body>
-</html>
-
-  <h3>Actualidad Colombiana</h3>
-  <div id="results" class="news-grid"></div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <p>© 2025 Noticias al Día | Proyecto Académico</p>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>
